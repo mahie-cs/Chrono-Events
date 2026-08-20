@@ -1,0 +1,32 @@
+[
+    {
+        "status": "past",
+        "name": "CSE In-Course Exam",
+        "date": "20-8-2026",
+        "details": "A mandatory exam covering differnet types of Topologies, Number systems, IP Addresses, Computer basics, I/O devices, Software and Networking basics."
+    },
+    {
+        "status": "upcoming",
+        "name": "Social Science In-Course Exam",
+        "date": "01-9-2026",
+        "details": "A mandatory exam covering Organs of the Government, Various types of Constitutions,  Common features of Constitutions od Bangladesh, Fundamental Rights and Human Rights."
+    },
+    {
+        "status": "past",
+        "name": "CSE Single Page Assignment Submission",
+        "date": "12-8-2026",
+        "details": "Topic: Star Wireless Network vs Mesh Wireless Network."
+    },
+    {
+        "status": "past",
+        "name": " Discrete Mathematics Assignment Submission",
+        "date": "16-8-2026",
+        "details": "Topic shared in Descrete Mathematics class Whatsapp group."
+    },
+    {
+        "status": "Ongoing",
+        "name": "Pera",
+        "date": "32-6-2030",
+        "details": "A neverending event that will continue until the end of fourth year of the CSE program."
+    }
+]
