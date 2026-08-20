@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📓 Chrono Events
+# 📓 (Chrono Events)[https://mahie-cs.github.io/Chrono-Events/]
 
 ### a spiral-bound event tracker for the CSE department
 
