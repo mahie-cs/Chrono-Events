@@ -1,7 +1,7 @@
 <div align="center">
 
-# 📓 (Chrono Events)[https://mahie-cs.github.io/Chrono-Events/]
-
+# 📓 Chrono Events
+(Visit Site)[https://mahie-cs.github.io/Chrono-Events/]
 ### a spiral-bound event tracker for the CSE department
 
 *Saic Institute of Management &amp; Technology — SIMT Engineering College*
