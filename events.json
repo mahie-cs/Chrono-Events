@@ -6,12 +6,6 @@
         "details": "A mandatory exam covering differnet types of Topologies, Number systems, IP Addresses, Computer basics, I/O devices, Software and Networking basics."
     },
     {
-        "status": "upcoming",
-        "name": "Social Science In-Course Exam",
-        "date": "01-9-2026",
-        "details": "A mandatory exam covering Organs of the Government, Various types of Constitutions,  Common features of Constitutions od Bangladesh, Fundamental Rights and Human Rights."
-    },
-    {
         "status": "past",
         "name": "CSE Single Page Assignment Submission",
         "date": "12-8-2026",
@@ -34,5 +28,23 @@
         "name": "CSE Lab Assessment",
         "date": "23-8-2026",
         "details": "Indevedual assessment on Arrays and Loops. Accepetable languages: C/C++ and Python. This will be held by the Department Head of CSE in Room 506 (Computer Lab). Each students will have limited and short amount of time to solve problems."
+    },
+    {
+    "status": "upcoming",
+        "name": "EEE In-Course Exam",
+        "date": "25-8-2026",
+        "details": "A mandatory exam covering Lecture slide 1 through 13. Lecture slides are available on Google Drive. The Drive link can be found on the WhatsApp community announcement channel. If you can't find it, ask class rep for the link."
+    },
+    {
+        "status": "upcoming",
+        "name": "Discrete Mathematics In-Course Exam",
+        "date": "27-8-2026",
+        "details": "A A mandatory exam covering Lecture 5 through 7.1. Lecture slides are available on the dedicated Discrete Mathematics WhatsApp group. For any inquiries, contact the class rep or Amartya Kumar Durjoy."
+    },
+    {
+        "status": "upcoming",
+        "name": "Social Science In-Course Exam",
+        "date": "01-9-2026",
+        "details": "A mandatory exam covering Organs of the Government, Various types of Constitutions,  Common features of Constitutions od Bangladesh, Fundamental Rights and Human Rights."
     }
 ]
