@@ -28,5 +28,11 @@
         "name": "Pera",
         "date": "32-6-2030",
         "details": "A neverending event that will continue until the end of fourth year of the CSE program."
+    },
+    {
+        "status": "upcoming",
+        "name": "CSE Lab Assessment",
+        "date": "23-8-2026",
+        "details": "Indevedual assessment on Arrays and Loops. Accepetable languages: C/C++ and Python. This will be held by the Department Head of CSE in Room 506 (Computer Lab). Each students will have limited and short amount of time to solve problems."
     }
 ]
