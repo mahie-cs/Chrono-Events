@@ -423,8 +423,8 @@ footer p:first-of-type {
 
 footer p:nth-of-type(2) {
     font-family: 'Caveat', cursive;
-    font-size: 1.2rem;
-    color: var(--cover-text);
+    font-size: 1.3rem;
+    color: var(--gold);
 }
 
 footer a {
