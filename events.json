@@ -13,9 +13,45 @@
     },
     {
         "status": "past",
+        "name": "Football Tournament 2026",
+        "date": "16-7-2026",
+        "details": "An Interdepartmental Football Tournament hosted at Kick Zone in Mirpur-12. Every student of SIMT no matter the year can participate including the teachers."
+    },
+    {
+        "status": "past",
+        "name": "Indoor Games 2026",
+        "date": "29-7-2026",
+        "details": "A indoor tournament hosted in the main building of SIMT on the 10th floor. Chess, Carrom and Foosball can be played. Pick your favourite game and have fun!"
+    },
+    {
+        "status": "past",
+        "name": "The Orator Challenge 2026",
+        "date": "27-7-2026",
+        "details": "Show your public speaking skills and get a chance to join the SIMT Debating Club."
+    },
+    {
+        "status": "past",
+        "name": "Chemistry In-Couse Exam",
+        "date": "16-8-2026",
+        "details": "A mandatory exam on the topic: Chemical Bonds."
+    },
+    {
+        "status": "past",
+        "name": "EEE Presentation",
+        "date": "04-8-2026",
+        "details": "A presentation on KVL vs KCL vs Ohm's Law. The class has been divided into three groups and their topics have been assigned. Create the presentation as a group and present it in front of the class"
+    },
+    {
+        "status": "past",
         "name": " Discrete Mathematics Assignment Submission",
         "date": "16-8-2026",
         "details": "Topic shared in Descrete Mathematics class Whatsapp group."
+    },
+    {
+        "status": "past",
+        "name": "EEE Debate",
+        "date": "19-8-2026",
+        "details": "A debate on Thevenin's Theorem and Norton's Theorem. The class has been divided in two groups. Research on both topics and debate against your opponent."
     },
     {
         "status": "Ongoing",
@@ -46,5 +82,11 @@
         "name": "Math In-Course Exam",
         "date": "06-9-2026",
         "details": "A mandatory exam covering Limit, Continuity, Differentiability, Leibniz Theorem, Rolles Theorem, Mean Value Theorem. Our teacher suggested us to study what he taught in his slides first, then practice previous year questions. By doing so, you should be able to answer most questions."
+    },
+    {
+        "status": "upcoming",
+        "name": "EEE Project Deadline",
+        "date": "15-9-2026",
+        "details": "Bring your submitted project ideas to life, after they have been approved of course. Please create your project before the deadline."
     }
 ]
