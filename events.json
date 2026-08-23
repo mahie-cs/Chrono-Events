@@ -40,5 +40,11 @@
         "name": "Social Science In-Course Exam",
         "date": "01-9-2026",
         "details": "A mandatory exam covering Organs of the Government, Various types of Constitutions,  Common features of Constitutions od Bangladesh, Fundamental Rights and Human Rights."
+    },
+    {
+        "status": "upcoming",
+        "name": "Math In-Course Exam",
+        "date": "06-9-2026",
+        "details": "A mandatory exam covering Limit, Continuity, Differentiability, Leibniz Theorem, Rolles Theorem, Mean Value Theorem. Our teacher suggested us to study what he taught in his slides first, then practice previous year questions. By doing so, you should be able to answer most questions."
     }
 ]
