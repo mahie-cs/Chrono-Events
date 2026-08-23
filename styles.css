@@ -421,6 +421,12 @@ footer p:first-of-type {
     color: var(--gold);
 }
 
+footer p:second-of-type {
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+    color: var(--gold);
+}
+
 footer a {
     color: var(--gold);
     text-decoration: underline dashed;
