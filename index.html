@@ -10,23 +10,66 @@
 </head>
 <body>
     <header>
+        <button id="hamburger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-list">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
         <h1>Chrono Events</h1>
     </header>
-    
+
+    <nav id="main-nav" aria-label="Sections">
+        <ul id="nav-list">
+            <li><a href="#exams" class="nav-tab" data-page="exams">Exams</a></li>
+            <li><a href="#assignments" class="nav-tab" data-page="assignments">Assignments</a></li>
+            <li><a href="#events" class="nav-tab" data-page="events">Events</a></li>
+        </ul>
+    </nav>
+
     <main>
-        <section id="upcoming-section">
-            <h2>Upcoming Events</h2>
-            <div id="upcoming-container" class="card-container"></div>
+        <section id="page-exams" class="page">
+            <section class="status-section" data-status="upcoming">
+                <h2>Upcoming Exams</h2>
+                <div id="exams-upcoming-container" class="card-container"></div>
+            </section>
+            <section class="status-section" data-status="ongoing">
+                <h2>Ongoing Exams</h2>
+                <div id="exams-ongoing-container" class="card-container"></div>
+            </section>
+            <section class="status-section" data-status="past">
+                <h2>Past Exams</h2>
+                <div id="exams-past-container" class="card-container"></div>
+            </section>
         </section>
 
-         <section id="ongoing-section">
-            <h2>Ongoing Events</h2>
-            <div id="ongoing-container" class="card-container"></div>
+        <section id="page-assignments" class="page" hidden>
+            <section class="status-section" data-status="upcoming">
+                <h2>Upcoming Assignments</h2>
+                <div id="assignments-upcoming-container" class="card-container"></div>
+            </section>
+            <section class="status-section" data-status="ongoing">
+                <h2>Ongoing Assignments</h2>
+                <div id="assignments-ongoing-container" class="card-container"></div>
+            </section>
+            <section class="status-section" data-status="past">
+                <h2>Past Assignments</h2>
+                <div id="assignments-past-container" class="card-container"></div>
+            </section>
         </section>
-        
-        <section id="past-section">
-            <h2>Past Events</h2>
-            <div id="past-container" class="card-container"></div>
+
+        <section id="page-events" class="page" hidden>
+            <section class="status-section" data-status="upcoming">
+                <h2>Upcoming Events</h2>
+                <div id="events-upcoming-container" class="card-container"></div>
+            </section>
+            <section class="status-section" data-status="ongoing">
+                <h2>Ongoing Events</h2>
+                <div id="events-ongoing-container" class="card-container"></div>
+            </section>
+            <section class="status-section" data-status="past">
+                <h2>Past Events</h2>
+                <div id="events-past-container" class="card-container"></div>
+            </section>
         </section>
     </main>
 
