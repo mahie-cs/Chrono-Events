@@ -157,41 +157,63 @@ header h1::before {
 }
 
 /* ---------------------------------------------------------------
-   Section nav — styled like coloured index-divider tabs.
-   Desktop: a row of tabs under the header.
-   Mobile: collapsed until the hamburger button opens it.
+   Section nav.
+   Desktop: three ribbon "bookmarks" cascading top-left to
+   bottom-right — Exams, then Assignments below-right of it, then
+   Events below-right of that. Left edge lines up with the section
+   headings and card grid in <main> (same max-width + padding).
+   Mobile: collapsed behind the hamburger button, and floats over
+   the page instead of pushing content down when opened.
    --------------------------------------------------------------- */
 
 #main-nav {
-    padding: 0 1rem 0 calc(1rem + var(--gutter));
-    margin-bottom: 0.5rem;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 2rem 0 calc(2rem + var(--gutter));
 }
 
 #nav-list {
     list-style: none;
     display: flex;
-    gap: 0.6rem;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 0 2.25rem;
+    padding: 0;
+}
+
+#nav-list li {
     margin: 0;
-    padding: 0 0 0 0.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
+}
+
+#nav-list li:nth-child(2) {
+    margin-left: 2.75rem;
+    margin-top: -0.5rem;
+}
+
+#nav-list li:nth-child(3) {
+    margin-left: 5.5rem;
+    margin-top: -0.5rem;
 }
 
 .nav-tab {
-    display: inline-block;
+    display: block;
+    width: 180px;
     font-family: 'Kalam', cursive;
     font-weight: 700;
     font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    text-align: center;
     text-decoration: none;
-    color: var(--tab-color, var(--ink-navy));
-    background: var(--paper-note);
-    border: 2px dashed var(--tab-color, var(--ink-grey));
-    border-bottom: none;
-    border-radius: 10px 10px 0 0;
-    padding: 0.55rem 1.3rem 0.5rem;
-    clip-path: polygon(6% 0, 94% 0, 100% 100%, 0% 100%);
-    transform: translateY(4px);
-    transition: transform 0.2s ease, background 0.2s ease;
+    color: #fff;
+    background: var(--tab-color, var(--ink-grey));
+    padding: 0.7rem 1rem 1.4rem;
+    clip-path: polygon(0 0, 100% 0, 100% 68%, 50% 100%, 0 68%);
+    box-shadow: 0 4px 10px rgba(43, 38, 33, 0.22);
+    opacity: 0.82;
+    transform: scale(0.96);
+    transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 li:nth-child(1) .nav-tab { --tab-color: var(--margin-red); }
@@ -199,14 +221,13 @@ li:nth-child(2) .nav-tab { --tab-color: var(--gold); }
 li:nth-child(3) .nav-tab { --tab-color: var(--ink-teal); }
 
 .nav-tab:hover {
-    transform: translateY(0);
+    opacity: 0.95;
 }
 
 .nav-tab.active {
-    background: var(--paper);
-    transform: translateY(0);
-    border-style: solid;
-    box-shadow: 0 -2px 0 0 var(--paper) inset, 0 4px 10px rgba(43, 38, 33, 0.12);
+    opacity: 1;
+    transform: scale(1) translateX(8px);
+    box-shadow: 0 8px 18px rgba(43, 38, 33, 0.3);
 }
 
 /* ---------------------------------------------------------------
@@ -220,13 +241,20 @@ li:nth-child(3) .nav-tab { --tab-color: var(--ink-teal); }
 
     #main-nav {
         padding: 0 1.25rem;
+        margin: 0;
     }
 
     #nav-list {
+        position: absolute;
+        top: 0.5rem;
+        left: 1.25rem;
+        right: 1.25rem;
+        z-index: 30;
         display: none;
         flex-direction: column;
+        align-items: stretch;
         gap: 0;
-        padding: 0;
+        margin: 0;
         border: 1px solid rgba(43, 38, 33, 0.12);
         border-radius: 8px;
         overflow: hidden;
@@ -238,15 +266,26 @@ li:nth-child(3) .nav-tab { --tab-color: var(--ink-teal); }
         display: flex;
     }
 
+    #nav-list li,
+    #nav-list li:nth-child(2),
+    #nav-list li:nth-child(3) {
+        margin: 0;
+    }
+
     .nav-tab {
+        width: 100%;
         clip-path: none;
+        opacity: 1;
+        transform: none;
+        color: var(--tab-color, var(--ink-navy));
+        background: var(--paper-note);
         border: none;
         border-bottom: 1px dashed rgba(43, 38, 33, 0.18);
         border-left: 5px solid var(--tab-color, var(--ink-grey));
         border-radius: 0;
-        transform: none;
         padding: 0.85rem 1.1rem;
-        width: 100%;
+        box-shadow: none;
+        text-align: left;
     }
 
     li:last-child .nav-tab {
@@ -255,6 +294,8 @@ li:nth-child(3) .nav-tab { --tab-color: var(--ink-teal); }
 
     .nav-tab.active {
         background: var(--paper);
+        opacity: 1;
+        transform: none;
         box-shadow: none;
     }
 }
