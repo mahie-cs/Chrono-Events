@@ -13,6 +13,7 @@
     --hi-teal: rgba(148, 205, 190, 0.55);
     --hi-navy: rgba(180, 199, 230, 0.55);
     --hi-grey: rgba(200, 193, 178, 0.55);
+    --hi-red: rgba(198, 82, 79, 0.5);
 
     --tape: rgba(255, 251, 224, 0.75);
 
@@ -73,9 +74,17 @@ h1, h2, h3, h4 {
     margin-top: 0;
 }
 
+a:focus-visible,
+button:focus-visible,
+.card:focus-visible {
+    outline: 2px dashed var(--ink-navy);
+    outline-offset: 3px;
+}
+
 header {
+    position: relative;
     text-align: center;
-    padding: 2.5rem 1rem 2rem calc(1rem + var(--gutter));
+    padding: 2.5rem 1rem 1.5rem calc(1rem + var(--gutter));
 }
 
 header h1 {
@@ -97,6 +106,233 @@ header h1::before {
     transform: rotate(-1deg);
     z-index: -1;
     border-radius: 3px;
+}
+
+/* ---------------------------------------------------------------
+   Hamburger button (mobile only — see media query below)
+   Drawn as three hand-sketched strokes rather than a stock icon.
+   --------------------------------------------------------------- */
+
+#hamburger-btn {
+    display: none;
+    position: absolute;
+    top: 1.6rem;
+    right: 1.25rem;
+    width: 46px;
+    height: 40px;
+    padding: 0;
+    background: var(--paper-note);
+    border: 1px solid rgba(43, 38, 33, 0.15);
+    border-radius: 6px;
+    box-shadow: 0 3px 6px rgba(43, 38, 33, 0.15);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    z-index: 20;
+}
+
+#hamburger-btn .bar {
+    display: block;
+    width: 22px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--ink-navy);
+    transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+#hamburger-btn .bar:nth-child(1) { transform: rotate(-1deg); }
+#hamburger-btn .bar:nth-child(3) { transform: rotate(1deg); width: 17px; align-self: center; }
+
+#hamburger-btn.open .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+#hamburger-btn.open .bar:nth-child(2) {
+    opacity: 0;
+}
+#hamburger-btn.open .bar:nth-child(3) {
+    width: 22px;
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* ---------------------------------------------------------------
+   Section nav.
+   Desktop: three equal-width tabs side by side, dashed borders,
+   left edge lined up with the section headings and card grid in
+   <main> (same max-width + padding). The active tab is marked by a
+   coloured "highlighter" sweeping in behind the label — same idea
+   as the highlight swatches behind the h1/h2 text, just animated.
+   Mobile: collapsed behind the hamburger button, and appears as a
+   small popover anchored right under that button instead of
+   pushing the page content down.
+   --------------------------------------------------------------- */
+
+#main-nav {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 2rem 0 calc(2rem + var(--gutter));
+}
+
+#nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 0.85rem;
+    margin: 0 0 2.25rem;
+    padding: 0;
+}
+
+#nav-list li {
+    margin: 0;
+}
+
+.nav-tab {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 54px;
+    overflow: hidden;
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    color: var(--tab-color, var(--ink-navy));
+    background: var(--paper-note);
+    border: 2px dashed var(--tab-color, var(--ink-grey));
+    border-radius: 8px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+li:nth-child(1) .nav-tab { --tab-color: var(--margin-red); --tab-ink: var(--hi-red); }
+li:nth-child(2) .nav-tab { --tab-color: var(--gold); --tab-ink: var(--hi-gold); }
+li:nth-child(3) .nav-tab { --tab-color: var(--ink-teal); --tab-ink: var(--hi-teal); }
+
+.nav-tab .ink {
+    position: absolute;
+    inset: 0;
+    background: var(--tab-ink, var(--hi-navy));
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.45s cubic-bezier(0.65, 0.05, 0.36, 1);
+    z-index: 0;
+}
+
+.nav-tab .label {
+    position: relative;
+    z-index: 1;
+}
+
+.nav-tab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(43, 38, 33, 0.15);
+}
+
+.nav-tab.active .ink {
+    transform: scaleX(1);
+}
+
+.nav-tab.active {
+    border-style: solid;
+}
+
+/* ---------------------------------------------------------------
+   Responsive nav behaviour
+   --------------------------------------------------------------- */
+
+@media (max-width: 700px) {
+    #hamburger-btn {
+        display: flex;
+    }
+
+    #main-nav {
+        padding: 0 1.25rem;
+        margin: 0;
+    }
+
+    /* Anchored as a popover right under #hamburger-btn (top: 1.6rem,
+       right: 1.25rem, height: 40px in the header) rather than
+       spanning the page, and fixed so opening it never pushes
+       content down. Keep these offsets in sync with that button. */
+    #nav-list {
+        position: fixed;
+        top: calc(1.6rem + 40px + 0.6rem);
+        right: 1.25rem;
+        width: 200px;
+        z-index: 30;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        margin: 0;
+        border: 1px solid rgba(43, 38, 33, 0.12);
+        border-radius: 8px;
+        overflow: visible;
+        background: var(--paper-note);
+        box-shadow: 0 8px 18px rgba(43, 38, 33, 0.16);
+    }
+
+    #nav-list::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        right: 14px;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid var(--paper-note);
+    }
+
+    #main-nav.open #nav-list {
+        display: flex;
+    }
+
+    .nav-tab {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        justify-content: flex-start;
+        color: var(--tab-color, var(--ink-navy));
+        background: var(--paper-note);
+        border: none;
+        border-bottom: 1px dashed rgba(43, 38, 33, 0.18);
+        border-left: 5px solid var(--tab-color, var(--ink-grey));
+        border-radius: 0;
+        padding: 0.85rem 1.1rem;
+        box-shadow: none;
+        text-align: left;
+        transform: none;
+    }
+
+    .nav-tab:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    li:first-child .nav-tab {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    li:last-child .nav-tab {
+        border-bottom: none;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
+    .nav-tab.active {
+        border-left-width: 5px;
+    }
+
+    .nav-tab .ink {
+        opacity: 0.6;
+    }
 }
 
 main {
@@ -134,14 +370,17 @@ section h2::before {
     border-radius: 2px;
 }
 
-#ongoing-section h2 { color: var(--ink-teal); text-decoration-color: var(--ink-teal); }
-#ongoing-section h2::before { background: var(--hi-teal); transform: rotate(-1deg); }
+/* Per-status colouring — one rule set shared by every page (exams /
+   assignments / events) instead of repeating per-page IDs. */
 
-#upcoming-section h2 { color: var(--ink-navy); text-decoration-color: var(--ink-navy); }
-#upcoming-section h2::before { background: var(--hi-navy); transform: rotate(0.6deg); }
+.status-section[data-status="ongoing"] h2 { color: var(--ink-teal); text-decoration-color: var(--ink-teal); }
+.status-section[data-status="ongoing"] h2::before { background: var(--hi-teal); transform: rotate(-1deg); }
 
-#past-section h2 { color: var(--ink-grey); text-decoration-color: var(--ink-grey); }
-#past-section h2::before { background: var(--hi-grey); transform: rotate(-0.8deg); }
+.status-section[data-status="upcoming"] h2 { color: var(--ink-navy); text-decoration-color: var(--ink-navy); }
+.status-section[data-status="upcoming"] h2::before { background: var(--hi-navy); transform: rotate(0.6deg); }
+
+.status-section[data-status="past"] h2 { color: var(--ink-grey); text-decoration-color: var(--ink-grey); }
+.status-section[data-status="past"] h2::before { background: var(--hi-grey); transform: rotate(-0.8deg); }
 
 .card-container {
     display: flex;
@@ -294,29 +533,29 @@ section h2::before {
     text-decoration-style: solid;
 }
 
-/* Per-status ink colours */
-#ongoing-container .card-front h3,
-#ongoing-container .card-front .date,
-#ongoing-container .card-back h4,
-#ongoing-container .show-more-btn {
+/* Per-status ink colours on the cards themselves */
+.status-section[data-status="ongoing"] .card-front h3,
+.status-section[data-status="ongoing"] .card-front .date,
+.status-section[data-status="ongoing"] .card-back h4,
+.status-section[data-status="ongoing"] .show-more-btn {
     color: var(--ink-teal);
 }
 
-#upcoming-container .card-front h3,
-#upcoming-container .card-front .date,
-#upcoming-container .card-back h4,
-#upcoming-container .show-more-btn {
+.status-section[data-status="upcoming"] .card-front h3,
+.status-section[data-status="upcoming"] .card-front .date,
+.status-section[data-status="upcoming"] .card-back h4,
+.status-section[data-status="upcoming"] .show-more-btn {
     color: var(--ink-navy);
 }
 
-#past-container .card {
+.status-section[data-status="past"] .card {
     filter: saturate(0.75) opacity(0.88);
 }
 
-#past-container .card-front h3,
-#past-container .card-front .date,
-#past-container .card-back h4,
-#past-container .show-more-btn {
+.status-section[data-status="past"] .card-front h3,
+.status-section[data-status="past"] .card-front .date,
+.status-section[data-status="past"] .card-back h4,
+.status-section[data-status="past"] .show-more-btn {
     color: var(--ink-grey);
 }
 
@@ -445,7 +684,7 @@ footer a:hover {
     }
 
     header {
-        padding: 2rem 1rem;
+        padding: 2rem 3.5rem 1.5rem 1rem;
     }
 
     main {
@@ -466,3 +705,15 @@ footer a:hover {
         max-width: 340px;
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    #hamburger-btn .bar,
+    .nav-tab,
+    .card,
+    .card-inner,
+    .card:hover,
+    #modal-backdrop {
+        transition: none !important;
+    }
+}
+    
