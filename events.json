@@ -1,92 +1,93 @@
 [
     {
-        "status": "past",
+        "type": "exam",
         "name": "CSE In-Course Exam",
-        "date": "28-7-2026",
+        "date": "2026-07-28",
         "details": "A mandatory exam covering differnet types of Topologies, Number systems, IP Addresses, Computer basics, I/O devices, Software and Networking basics."
     },
     {
-        "status": "past",
+        "type": "assignment",
         "name": "CSE Single Page Assignment Submission",
-        "date": "12-8-2026",
+        "date": "2026-08-12",
         "details": "Topic: Star Wireless Network vs Mesh Wireless Network."
     },
     {
-        "status": "past",
+        "type": "event",
         "name": "Football Tournament 2026",
-        "date": "16-7-2026",
+        "date": "2026-07-16",
         "details": "An Interdepartmental Football Tournament hosted at Kick Zone in Mirpur-12. Every student of SIMT no matter the year can participate including the teachers."
     },
     {
-        "status": "past",
+        "type": "event",
         "name": "Indoor Games 2026",
-        "date": "29-7-2026",
+        "date": "2026-07-29",
         "details": "A indoor tournament hosted in the main building of SIMT on the 10th floor. Chess, Carrom and Foosball can be played. Pick your favourite game and have fun!"
     },
     {
-        "status": "past",
+        "type": "event",
         "name": "The Orator Challenge 2026",
-        "date": "27-7-2026",
+        "date": "2026-07-27",
         "details": "Show your public speaking skills and get a chance to join the SIMT Debating Club."
     },
     {
-        "status": "past",
-        "name": "Chemistry In-Couse Exam",
-        "date": "16-8-2026",
+        "type": "exam",
+        "name": "Chemistry In-Course Exam",
+        "date": "2026-08-16",
         "details": "A mandatory exam on the topic: Chemical Bonds."
     },
     {
-        "status": "past",
+        "type": "assignment",
         "name": "EEE Presentation",
-        "date": "04-8-2026",
+        "date": "2026-08-04",
         "details": "A presentation on KVL vs KCL vs Ohm's Law. The class has been divided into three groups and their topics have been assigned. Create the presentation as a group and present it in front of the class"
     },
     {
-        "status": "past",
-        "name": " Discrete Mathematics Assignment Submission",
-        "date": "16-8-2026",
-        "details": "Topic shared in Descrete Mathematics class Whatsapp group."
+        "type": "assignment",
+        "name": "Discrete Mathematics Assignment Submission",
+        "date": "2026-08-16",
+        "details": "Topic shared in the Discrete Mathematics class WhatsApp group."
     },
     {
-        "status": "past",
+        "type": "assignment",
         "name": "EEE Debate",
-        "date": "19-8-2026",
+        "date": "2026-08-19",
         "details": "A debate on Thevenin's Theorem and Norton's Theorem. The class has been divided in two groups. Research on both topics and debate against your opponent."
     },
     {
-        "status": "Ongoing",
+        "type": "event",
         "name": "Pera",
-        "date": "32-6-2030",
+        "date": "2024-01-01",
+        "endDate": "2030-06-30",
         "details": "A neverending event that will continue until the end of fourth year of the CSE program."
     },
     {
-    "status": "past",
+        "type": "exam",
         "name": "EEE In-Course Exam",
-        "date": "25-8-2026",
+        "date": "2026-08-25",
         "details": "A mandatory exam covering Lecture slide 1 through 13. Lecture slides are available on Google Drive. The Drive link can be found on the WhatsApp community announcement channel. If you can't find it, ask class rep for the link."
     },
     {
-        "status": "upcoming",
+        "type": "exam",
         "name": "Discrete Mathematics In-Course Exam",
-        "date": "30-8-2026",
+        "date": "2026-08-30",
         "details": "A mandatory exam covering Lecture 4, 5, 6. Lecture slides are available on the dedicated Discrete Mathematics WhatsApp group. For any inquiries, contact the class rep or Amartya Kumar Durjoy."
     },
     {
-        "status": "upcoming",
+        "type": "exam",
         "name": "Social Science In-Course Exam",
-        "date": "01-9-2026",
-        "details": "A mandatory exam covering Organs of the Government, Various types of Constitutions,  Common features of Constitutions od Bangladesh, Fundamental Rights and Human Rights."
+        "date": "2026-09-01",
+        "details": "A mandatory exam covering Organs of the Government, Various types of Constitutions, Common features of Constitutions of Bangladesh, Fundamental Rights and Human Rights."
     },
     {
-        "status": "upcoming",
+        "type": "exam",
         "name": "Math In-Course Exam",
-        "date": "06-9-2026",
+        "date": "2026-09-06",
         "details": "A mandatory exam covering Limit, Continuity, Differentiability, Leibniz Theorem, Rolles Theorem, Mean Value Theorem. Our teacher suggested us to study what he taught in his slides first, then practice previous year questions. By doing so, you should be able to answer most questions."
     },
     {
-        "status": "upcoming",
+        "type": "assignment",
         "name": "EEE Project Deadline",
-        "date": "15-9-2026",
+        "date": "2026-09-15",
         "details": "Bring your submitted project ideas to life, after they have been approved of course. Please create your project before the deadline."
     }
 ]
