@@ -89,5 +89,11 @@
         "name": "EEE Project Deadline",
         "date": "2026-09-15",
         "details": "Bring your submitted project ideas to life, after they have been approved of course. Please create your project before the deadline."
+    },
+    {
+        "type": "exam",
+        "name": "CSE Lab Assesment",
+        "date": "2026-09-02",
+        "details": "A mandatory lab assessment on previously taught programming related problems. Main topic: Loops and Arrays. Allowed languages: C/C++, Python. This assesment will be done individually. Every student will get approximately 5 minutes to solve a problem. Failing to remember syntaxes will not be tolerated."
     }
 ]
