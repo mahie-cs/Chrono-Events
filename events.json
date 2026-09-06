@@ -95,5 +95,11 @@
         "name": "CSE Lab Assesment",
         "date": "2026-09-02",
         "details": "A mandatory lab assessment on previously taught programming related problems. Main topic: Loops and Arrays. Allowed languages: C/C++, Python. This assesment will be done individually. Every student will get approximately 5 minutes to solve a problem. Failing to remember syntaxes will not be tolerated."
+    },
+    {
+        "type": "assignment",
+        "name": "Discrete Mathematics Presentation",
+        "date": "2026-09-08",
+        "details": "A presentation on the following three topics: Euler Circuit and Path, Hamilton Circuit and Path, Coplanar Graph."
     }
 ]
