@@ -133,26 +133,13 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Failed to load events.json:', error));
 
     /* ---------------------------------------------------------------
-       Navigation — hash-based paging (#exams is the default/home page)
-       plus a hamburger menu that only takes over on small screens.
+       Navigation — hash-based paging (#exams is the default/home page).
+       On mobile the nav renders as a persistent bottom capsule, so
+       there's no menu open/close state to manage here.
        --------------------------------------------------------------- */
 
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const mainNav = document.getElementById('main-nav');
     const navLinks = document.querySelectorAll('.nav-tab');
     const pages = document.querySelectorAll('.page');
-
-    function openMenu() {
-        mainNav.classList.add('open');
-        hamburgerBtn.classList.add('open');
-        hamburgerBtn.setAttribute('aria-expanded', 'true');
-    }
-
-    function closeMenu() {
-        mainNav.classList.remove('open');
-        hamburgerBtn.classList.remove('open');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
-    }
 
     function showPage(pageName) {
         const target = PAGES.includes(pageName) ? pageName : 'exams';
@@ -164,25 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
             link.classList.toggle('active', isActive);
             link.setAttribute('aria-current', isActive ? 'page' : 'false');
         });
-        closeMenu();
     }
-
-    hamburgerBtn.addEventListener('click', () => {
-        mainNav.classList.contains('open') ? closeMenu() : openMenu();
-    });
-
-    document.addEventListener('click', (e) => {
-        if (mainNav.classList.contains('open') && !mainNav.contains(e.target) && e.target !== hamburgerBtn) {
-            closeMenu();
-        }
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closeMenu();
-            modalBackdrop.classList.add('hidden');
-        }
-    });
 
     window.addEventListener('hashchange', () => {
         showPage(location.hash.replace('#', ''));
@@ -226,6 +195,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     modalBackdrop.addEventListener('click', (e) => {
         if (e.target === modalBackdrop) {
+            modalBackdrop.classList.add('hidden');
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
             modalBackdrop.classList.add('hidden');
         }
     });
