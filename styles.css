@@ -108,53 +108,6 @@ header h1::before {
     border-radius: 3px;
 }
 
-/* ---------------------------------------------------------------
-   Hamburger button (mobile only — see media query below)
-   Drawn as three hand-sketched strokes rather than a stock icon.
-   --------------------------------------------------------------- */
-
-#hamburger-btn {
-    display: none;
-    position: absolute;
-    top: 1.6rem;
-    right: 1.25rem;
-    width: 46px;
-    height: 40px;
-    padding: 0;
-    background: var(--paper-note);
-    border: 1px solid rgba(43, 38, 33, 0.15);
-    border-radius: 6px;
-    box-shadow: 0 3px 6px rgba(43, 38, 33, 0.15);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    cursor: pointer;
-    z-index: 20;
-}
-
-#hamburger-btn .bar {
-    display: block;
-    width: 22px;
-    height: 3px;
-    border-radius: 2px;
-    background: var(--ink-navy);
-    transition: transform 0.25s ease, opacity 0.2s ease;
-}
-
-#hamburger-btn .bar:nth-child(1) { transform: rotate(-1deg); }
-#hamburger-btn .bar:nth-child(3) { transform: rotate(1deg); width: 17px; align-self: center; }
-
-#hamburger-btn.open .bar:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-}
-#hamburger-btn.open .bar:nth-child(2) {
-    opacity: 0;
-}
-#hamburger-btn.open .bar:nth-child(3) {
-    width: 22px;
-    transform: translateY(-9px) rotate(-45deg);
-}
 
 /* ---------------------------------------------------------------
    Section nav.
@@ -163,9 +116,8 @@ header h1::before {
    <main> (same max-width + padding). The active tab is marked by a
    coloured "highlighter" sweeping in behind the label — same idea
    as the highlight swatches behind the h1/h2 text, just animated.
-   Mobile: collapsed behind the hamburger button, and appears as a
-   small popover anchored right under that button instead of
-   pushing the page content down.
+   Mobile: collapses into a floating capsule pinned to the bottom of
+   the screen, always visible — no toggle button needed.
    --------------------------------------------------------------- */
 
 #main-nav {
@@ -242,71 +194,62 @@ li:nth-child(3) .nav-tab { --tab-color: var(--ink-teal); --tab-ink: var(--hi-tea
 }
 
 /* ---------------------------------------------------------------
-   Responsive nav behaviour
+   Responsive nav behaviour.
+   Below 700px the nav becomes a floating 2D capsule pinned to the
+   bottom of the screen, always visible — no toggle needed. All
+   three segments share the pill equally; the outer element clips
+   to the rounded shape so only the two end segments show curved
+   corners, exactly where the pill itself curves.
    --------------------------------------------------------------- */
 
 @media (max-width: 700px) {
-    #hamburger-btn {
-        display: flex;
-    }
-
     #main-nav {
-        padding: 0 1.25rem;
-        margin: 0;
-    }
-
-    /* Anchored as a popover right under #hamburger-btn (top: 1.6rem,
-       right: 1.25rem, height: 40px in the header) rather than
-       spanning the page, and fixed so opening it never pushes
-       content down. Keep these offsets in sync with that button. */
-    #nav-list {
         position: fixed;
-        top: calc(1.6rem + 40px + 0.6rem);
-        right: 1.25rem;
-        width: 200px;
-        z-index: 30;
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
+        left: 50%;
+        bottom: 1.1rem;
+        transform: translateX(-50%);
+        width: calc(100% - 2.5rem);
+        max-width: 380px;
+        max-width: min(380px, calc(100% - 2.5rem));
+        padding: 0;
         margin: 0;
-        border: 1px solid rgba(43, 38, 33, 0.12);
-        border-radius: 8px;
-        overflow: visible;
-        background: var(--paper-note);
-        box-shadow: 0 8px 18px rgba(43, 38, 33, 0.16);
+        z-index: 40;
     }
 
-    #nav-list::before {
-        content: '';
-        position: absolute;
-        top: -8px;
-        right: 14px;
-        width: 0;
-        height: 0;
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-        border-bottom: 8px solid var(--paper-note);
-    }
-
-    #main-nav.open #nav-list {
+    #nav-list {
         display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 2px solid rgba(43, 38, 33, 0.16);
+        border-radius: 999px;
+        overflow: hidden;
+        background: var(--paper-note);
+        box-shadow: 0 10px 26px rgba(43, 38, 33, 0.3);
+    }
+
+    #nav-list li {
+        flex: 1 1 0;
+        margin: 0;
+        min-width: 0;
+    }
+
+    #nav-list li:not(:last-child) {
+        border-right: 1px dashed rgba(43, 38, 33, 0.22);
     }
 
     .nav-tab {
         width: 100%;
-        height: auto;
+        height: 56px;
         overflow: hidden;
-        justify-content: flex-start;
-        color: var(--tab-color, var(--ink-navy));
-        background: var(--paper-note);
+        font-size: 0.82rem;
+        padding: 0 0.3rem;
         border: none;
-        border-bottom: 1px dashed rgba(43, 38, 33, 0.18);
-        border-left: 5px solid var(--tab-color, var(--ink-grey));
         border-radius: 0;
-        padding: 0.85rem 1.1rem;
+        color: var(--tab-color, var(--ink-navy));
+        background: transparent;
         box-shadow: none;
-        text-align: left;
         transform: none;
     }
 
@@ -315,23 +258,12 @@ li:nth-child(3) .nav-tab { --tab-color: var(--ink-teal); --tab-ink: var(--hi-tea
         box-shadow: none;
     }
 
-    li:first-child .nav-tab {
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-    }
-
-    li:last-child .nav-tab {
-        border-bottom: none;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-    }
-
     .nav-tab.active {
-        border-left-width: 5px;
+        border-style: none;
     }
 
-    .nav-tab .ink {
-        opacity: 0.6;
+    .nav-tab .label {
+        white-space: nowrap;
     }
 }
 
@@ -684,15 +616,15 @@ footer a:hover {
     }
 
     header {
-        padding: 2rem 3.5rem 1.5rem 1rem;
+        padding: 2rem 1rem 1.5rem;
     }
 
     main {
-        padding: 1rem 1.25rem 2.5rem;
+        padding: 1rem 1.25rem 6.5rem;
     }
 
     footer {
-        padding: 2rem 1.5rem;
+        padding: 2rem 1.5rem 6.5rem;
     }
 
     footer::before {
@@ -707,7 +639,6 @@ footer a:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    #hamburger-btn .bar,
     .nav-tab,
     .card,
     .card-inner,
@@ -716,4 +647,3 @@ footer a:hover {
         transition: none !important;
     }
 }
-    
