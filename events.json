@@ -101,5 +101,11 @@
         "name": "Discrete Mathematics Presentation",
         "date": "2026-09-08",
         "details": "A presentation on the following three topics: Euler Circuit and Path, Hamilton Circuit and Path, Coplanar Graph."
+    },
+    {
+        "type": "assignment",
+        "name": "EEE Project Presentation",
+        "date": "2026-09-09",
+        "details": "You will give a presentation on the EEE project you and your team built. This presentation will determine your depth of understanding and whether you should proceed with perfecting your project."
     }
 ]
