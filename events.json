@@ -107,5 +107,23 @@
         "name": "EEE Project Presentation",
         "date": "2026-09-09",
         "details": "You will give a presentation on the EEE project you and your team built. This presentation will determine your depth of understanding and whether you should proceed with perfecting your project."
+    },
+    {
+        "type": "assignment",
+        "name": "Chemistry Assignment",
+        "date": "2026-09-14",
+        "details": "Assignment on previous year questions from 2021 to 2025 covering Atomic Structure and Chemical Bond."
+    },
+    {
+        "type": "exam",
+        "name": "Chemistry In-Course Exam - 2",
+        "date": "2026-09-20",
+        "details": "A mandatory exam on the following topics: Acid Base and Oxidation Reduction"
+    },
+    {
+        "type": "exam",
+        "name": "Chemistry In-Course Exam - 3",
+        "date": "2026-10-08",
+        "details": "The topics for this exam isn't decided yet."
     }
 ]
