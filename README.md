@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📓 [Chrono Events](https://mahie-cs.github.io/Chrono-Events/)
+# 📓 [Momentum](https://mahie-cs.github.io/Momentum/)
 
 ### a spiral-bound event tracker for the CSE department
 
@@ -16,7 +16,7 @@
 
 ## 🗒️ About this page
 
-> Built for the BSc first year students of the **Department of Computer Science &amp; Engineering** at **SIMT Engineering College**, *Chrono Events* is a single page that keeps track of everything on the department calendar — exams, assignment deadlines, meetups, hackathons — sorted into **Ongoing**, **Upcoming**, and **Past**, so nobody has to dig through a WhatsApp group to find a due date.
+> Built for the BSc first year students of the **Department of Computer Science &amp; Engineering** at **SIMT Engineering College**, *Momentum* is a single page that keeps track of everything on the department calendar — exams, assignment deadlines, meetups, hackathons — sorted into **Ongoing**, **Upcoming**, and **Past**, so nobody has to dig through a WhatsApp group to find a due date.
 
 The page itself is styled to look like a real notebook: spiral rings and a red margin rule run down the left edge, each event is a taped-on index card, dates are ink-stamped, and the footer is the notebook's back cover — cut along the dotted line and all.
 
@@ -35,7 +35,9 @@ The page itself is styled to look like a real notebook: spiral rings and a red m
 ## 🧾 Project structure
 
 ```
-chrono-events/
+Momentum/
+├── icons/
+    └── logo.jpg  → page logo that shows up in the browser tab
 ├── index.html    → page structure
 ├── styles.css    → the notebook look — ruled paper, rings, tape, ink
 ├── script.js     → fetches events.json, checks date, builds the cards, runs the modal
