@@ -125,5 +125,11 @@
         "name": "Chemistry In-Course Exam - 3",
         "date": "2026-10-08",
         "details": "The topics for this exam isn't decided yet."
+    },
+    {
+        "type": "exam",
+        "name": "Discrete Mathematics In-Couse Exam - 3",
+        "date": "2026-09-13",
+        "details": "A class test on the following topic: Graph (Last three slides)."
     }
 ]
