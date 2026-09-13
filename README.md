@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📓 [Momentum](https://mahie-cs.github.io/Momentum/)
+# 📓 [Momentum](https://mahie-cs.github.io/Chrono-Events/)
 
 ### a spiral-bound event tracker for the CSE department
 
