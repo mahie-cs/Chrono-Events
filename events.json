@@ -85,12 +85,6 @@
         "details": "A mandatory exam covering Limit, Continuity, Differentiability, Leibniz Theorem, Rolles Theorem, Mean Value Theorem. Our teacher suggested us to study what he taught in his slides first, then practice previous year questions. By doing so, you should be able to answer most questions."
     },
     {
-        "type": "assignment",
-        "name": "EEE Project Deadline",
-        "date": "2026-09-15",
-        "details": "Bring your submitted project ideas to life, after they have been approved of course. Please create your project before the deadline."
-    },
-    {
         "type": "exam",
         "name": "CSE Lab Assesment",
         "date": "2026-09-02",
