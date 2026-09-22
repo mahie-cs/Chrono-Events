@@ -131,5 +131,11 @@
         "name": "EEE Poster Presentation",
         "date": "2026-09-30",
         "details": "A poster presentation on your EEE project."
+    },
+    {
+        "type": "exam",
+        "name": "Social Science In-Couse Exam - 2",
+        "date": "Upcoming",
+        "details": "An exam on Types of Government, Origin of Government, State Basic Elements, Function of the state, State vs Government."
     }
 ]
