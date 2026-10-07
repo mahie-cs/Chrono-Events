@@ -161,5 +161,11 @@
         "name": "CSE Assignment (Improvement)",
         "date": "2026-10-13",
         "details": "An assignment on the last three year questions. 2025, 2024 and 2023."
+    },
+    {
+        "type": "assignment",
+        "name": "CSE Assesment - 2",
+        "date": "2026-10-13",
+        "details": "Lab assessment on the topics taught in the lab."
     }
 ]
