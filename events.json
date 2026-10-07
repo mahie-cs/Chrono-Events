@@ -117,7 +117,7 @@
     {
         "type": "exam",
         "name": "Chemistry In-Course Exam - 3",
-        "date": "2026-10-08",
+        "date": "2026-10-11",
         "details": "The exam is on the following topics: Reaction kinetics, Chemical Equilibria, Thermodynamics."
     },
     {
@@ -149,5 +149,11 @@
         "name": "Math In-Couse Exam - 2",
         "date": "2026-10-06",
         "details": "An exam on the following topic: Beta Gamma Function."
+    },
+    {
+        "type": "assignment",
+        "name": "EEE Assignment (Not for all)",
+        "date": "2026-10-08",
+        "details": "An assignment on all questions from only the previous year."
     }
 ]
