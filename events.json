@@ -152,8 +152,14 @@
     },
     {
         "type": "assignment",
-        "name": "EEE Assignment (Not for all)",
+        "name": "EEE Assignment (Improvement)",
         "date": "2026-10-08",
         "details": "An assignment on all questions from only the previous year."
+    },
+    {
+        "type": "assignment",
+        "name": "CSE Assignment (Improvement)",
+        "date": "2026-10-13",
+        "details": "An assignment on the last three year questions. 2025, 2024 and 2023."
     }
 ]
