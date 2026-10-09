@@ -74,28 +74,66 @@ function toggle(c){
 pagesEl.addEventListener('click',e=>{const c=e.target.closest('.card');if(c)toggle(c)});
 pagesEl.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('card')){e.preventDefault();toggle(e.target)}});
 
-/* ---- navigation: sliding indicator + direction-aware page entry ---- */
+/* ---- navigation + swipe: one position value drives the pages AND the tab indicator ---- */
 const tabs=[...document.querySelectorAll('.tabs a')],ind=$('.ind'),tabsEl=$('.tabs');
-let cur=-1,indX=0,indH;
-function placeInd(instant){
-  const i=Math.max(cur,0),w=(tabsEl.clientWidth-10)/3;ind.style.width=w+'px';
-  indH&&indH.stop();
-  if(instant){indX=i*w;ind.style.transform='translateX('+indX+'px)';return}
-  indH=spring(indX,i*w,indH?indH.v||0:0,{damping:.85,response:.4},x=>{indX=x;ind.style.transform='translateX('+x+'px)'});
+const pgs=PAGES.map(p=>$('#page-'+p)),LAST=PAGES.length-1;
+let cur=0,P=0,W=1,ph,moving=false,justDragged=false,dr=null;
+function layout(p){                       // p = position in page units (0..2), fractional while moving
+  P=p;W=pagesEl.clientWidth||1;
+  const iw=(tabsEl.clientWidth-10)/PAGES.length;ind.style.width=iw+'px';ind.style.transform='translateX('+p*iw+'px)';
+  pgs.forEach((pg,i)=>{
+    const d=i-p;
+    if(i===cur){pg.hidden=false;pg.style.position='';pg.style.transform=d?'translateX('+d*W+'px)':''}
+    else if(Math.abs(d)<1){pg.hidden=false;pg.style.cssText='position:absolute;top:0;left:0;width:100%;transform:translateX('+d*W+'px)'}
+    else{pg.hidden=true;pg.style.cssText=''}
+  });
 }
-let pgH;
-function show(name){
-  const i=Math.max(PAGES.indexOf(name),0),dir=cur<0?0:Math.sign(i-cur)||0,first=cur<0;
-  PAGES.forEach((p,j)=>$('#page-'+p).hidden=j!==i);
-  tabs.forEach((t,j)=>{t.classList.toggle('on',j===i);t.setAttribute('aria-current',j===i?'page':'false')});
-  cur=i;placeInd(first);
-  const pg=$('#page-'+PAGES[i]);pgH&&pgH.stop();
-  if(!first)pgH=spring(0,1,0,{damping:1,response:.35},p=>{pg.style.opacity=p;pg.style.transform=RM.matches?'':'translateX('+(1-p)*dir*28+'px)'},()=>{pg.style.opacity='';pg.style.transform=''});
-  if(!first&&scrollY>0)scrollTo(0,0);
+function markTab(n){tabs.forEach((t,j)=>{t.classList.toggle('on',j===n);t.setAttribute('aria-current',j===n?'page':'false')})}
+function settle(n){cur=n;moving=false;layout(n)}
+function goTo(n,v=0,damping=1){
+  n=Math.max(0,Math.min(LAST,n));ph&&ph.stop();markTab(n);
+  if(scrollY>0)scrollTo(0,0);
+  try{if(location.hash.slice(1)!==PAGES[n])history.replaceState(null,'','#'+PAGES[n])}catch(e){}
+  moving=true;
+  ph=spring(P*W,n*W,v,{damping,response:.4},x=>layout(x/W),()=>settle(n));
 }
-addEventListener('hashchange',()=>show(location.hash.slice(1)));
-addEventListener('resize',()=>placeInd(true));
-show(location.hash.slice(1)||'exams');
+addEventListener('hashchange',()=>{const i=PAGES.indexOf(location.hash.slice(1));if(i>=0&&(i!==cur||moving))goTo(i)});
+addEventListener('resize',()=>layout(P));
+cur=Math.max(0,PAGES.indexOf(location.hash.slice(1)));markTab(cur);layout(cur);
+
+/* swipe: vertical scroll stays native (touch-action: pan-y); horizontal intent is tracked 1:1 */
+pagesEl.addEventListener('pointerdown',e=>{
+  if(e.pointerType==='mouse')return;
+  dr={id:e.pointerId,x0:e.clientX,y0:e.clientY,lock:false,base:0,start:cur,hist:[]};
+  if(moving){                              // grab mid-flight: continue from the live position
+    ph.stop();dr.lock=true;dr.base=P*W;dr.hist=[[e.clientX,e.timeStamp]];pagesEl.setPointerCapture(e.pointerId);
+  }
+});
+pagesEl.addEventListener('pointermove',e=>{
+  if(!dr||e.pointerId!==dr.id)return;
+  if(!dr.lock){
+    const dx=e.clientX-dr.x0,dy=e.clientY-dr.y0;
+    if(Math.abs(dx)<10&&Math.abs(dy)<10)return;
+    if(Math.abs(dy)>=Math.abs(dx)){dr=null;return}
+    dr.lock=true;dr.base=P*W;dr.x0=e.clientX;dr.hist=[[e.clientX,e.timeStamp]];
+    if(scrollY>0)scrollTo(0,0);
+    pagesEl.setPointerCapture(e.pointerId);
+  }
+  dr.hist.push([e.clientX,e.timeStamp]);if(dr.hist.length>6)dr.hist.shift();
+  const raw=dr.base-(e.clientX-dr.x0),max=LAST*W;
+  layout((raw<0?-rubber(-raw,W):raw>max?max+rubber(raw-max,W):raw)/W);
+});
+function release(e){
+  if(!dr||e.pointerId!==dr.id)return;
+  const d=dr;dr=null;if(!d.lock)return;
+  justDragged=true;setTimeout(()=>justDragged=false,60);
+  const a=d.hist[0],b=d.hist[d.hist.length-1],fv=b[1]>a[1]?(b[0]-a[0])/(b[1]-a[1])*1000:0,v=-fv;
+  const to=Math.round((P*W+project(v,.99))/W);               // where the flick is heading
+  const n=Math.max(d.start-1,Math.min(d.start+1,to));        // one page at a time
+  goTo(n,v,Math.abs(v)>300?.85:1);                           // a little bounce only if flicked
+}
+pagesEl.addEventListener('pointerup',release);pagesEl.addEventListener('pointercancel',release);
+pagesEl.addEventListener('click',e=>{if(justDragged){e.stopPropagation();e.preventDefault()}},true);
 
 /* ---- bottom sheet: 1:1 drag, rubber-band, momentum projection, velocity handoff ---- */
 const sheet=$('#sheet'),scrim=$('#scrim'),mainEl=$('main');
