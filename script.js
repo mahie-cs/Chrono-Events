@@ -192,29 +192,3 @@ tb.addEventListener('click',()=>{
 });
 })
 .catch(err=>console.error('Failed to load events.json:',err));
-al toggle, remembered ---- */
-const root=document.documentElement,tb=$('#theme'),ic=tb.firstChild;let rot=0,th;
-function icons(dark){$('#sun').style.display=dark?'none':'';$('#moon').style.display=dark?'':'none';tb.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode')}
-icons(root.dataset.theme==='dark');
-tb.addEventListener('click',()=>{
-  const dark=root.dataset.theme!=='dark';
-  if(!RM.matches){root.classList.add('tt');setTimeout(()=>root.classList.remove('tt'),400)}
-  root.dataset.theme=dark?'dark':'light';icons(dark);
-  try{localStorage.setItem('theme',dark?'dark':'light')}catch(e){}
-  th&&th.stop();th=spring(rot,rot+90,0,{damping:.8,response:.4},r=>{rot=r;ic.style.transform='rotate('+r+'deg)'});
-});
-})
-.catch(err=>console.error('Failed to load events.json:',err));
-al toggle, remembered ---- */
-const root=document.documentElement,tb=$('#theme'),ic=tb.firstChild;let rot=0,th;
-function icons(dark){$('#sun').style.display=dark?'none':'';$('#moon').style.display=dark?'':'none';tb.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode')}
-icons(root.dataset.theme==='dark');
-tb.addEventListener('click',()=>{
-  const dark=root.dataset.theme!=='dark';
-  if(!RM.matches){root.classList.add('tt');setTimeout(()=>root.classList.remove('tt'),400)}
-  root.dataset.theme=dark?'dark':'light';icons(dark);
-  try{localStorage.setItem('theme',dark?'dark':'light')}catch(e){}
-  th&&th.stop();th=spring(rot,rot+90,0,{damping:.8,response:.4},r=>{rot=r;ic.style.transform='rotate('+r+'deg)'});
-});
-})
-.catch(err=>console.error('Failed to load events.json:',err));
