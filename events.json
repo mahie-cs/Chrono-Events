@@ -85,9 +85,93 @@
         "details": "A mandatory exam covering Limit, Continuity, Differentiability, Leibniz Theorem, Rolles Theorem, Mean Value Theorem. Our teacher suggested us to study what he taught in his slides first, then practice previous year questions. By doing so, you should be able to answer most questions."
     },
     {
+        "type": "exam",
+        "name": "CSE Lab Assesment",
+        "date": "2026-09-02",
+        "details": "A mandatory lab assessment on previously taught programming related problems. Main topic: Loops and Arrays. Allowed languages: C/C++, Python. This assesment will be done individually. Every student will get approximately 5 minutes to solve a problem. Failing to remember syntaxes will not be tolerated."
+    },
+    {
         "type": "assignment",
-        "name": "EEE Project Deadline",
+        "name": "Discrete Mathematics Presentation",
+        "date": "2026-09-08",
+        "details": "A presentation on the following three topics: Euler Circuit and Path, Hamilton Circuit and Path, Coplanar Graph."
+    },
+    {
+        "type": "assignment",
+        "name": "EEE Project Presentation",
+        "date": "2026-09-09",
+        "details": "You will give a presentation on the EEE project you and your team built. This presentation will determine your depth of understanding and whether you should proceed with perfecting your project."
+    },
+    {
+        "type": "assignment",
+        "name": "Chemistry Assignment - 1",
+        "date": "2026-09-17",
+        "details": "Assignment on previous year questions from 2021 to 2025 covering Atomic Structure and Chemical Bond."
+    },
+    {
+        "type": "exam",
+        "name": "Chemistry In-Course Exam - 2",
+        "date": "2026-09-22",
+        "details": "A mandatory exam on the following topics: Acid Base and Oxidation Reduction"
+    },
+    {
+        "type": "exam",
+        "name": "Chemistry In-Course Exam - 3",
+        "date": "2026-10-11",
+        "details": "The exam is on the following topics: Reaction kinetics, Chemical Equilibria, Thermodynamics."
+    },
+    {
+        "type": "exam",
+        "name": "Discrete Mathematics In-Couse Exam - 3",
         "date": "2026-09-15",
-        "details": "Bring your submitted project ideas to life, after they have been approved of course. Please create your project before the deadline."
+        "details": "A class test on the following topic: Graph (Last three slides)."
+    },
+    {
+        "type": "assignment",
+        "name": "EEE Poster Presentation",
+        "date": "2026-09-30",
+        "details": "A poster presentation on your EEE project."
+    },
+    {
+        "type": "exam",
+        "name": "Social Science In-Couse Exam - 2",
+        "date": "2026-10-01",
+        "details": "An exam on Types of Government, Origin of Government, State Basic Elements, Function of the state, State vs Government."
+    },
+    {
+        "type": "assignment",
+        "name": "Social Science Assessment",
+        "date": "2026-10-06",
+        "details": "Topic: 1. Explain the social contract theory with proper example -6 marks | 2. What do you mean by Human Resource Management and Human Resource Planning -4 marks | 3. Discuss the role of HRM in public administration -5 marks | 4. Describe the role of government to ensure accountability and transparency of civil services -5 marks | 5. Explain the prominent challenges in Human Resource Management and Planning -5 marks"
+    },
+    {
+        "type": "exam",
+        "name": "Math In-Couse Exam - 2",
+        "date": "2026-10-06",
+        "details": "An exam on the following topic: Beta Gamma Function."
+    },
+    {
+        "type": "assignment",
+        "name": "EEE Assignment (Improvement)",
+        "date": "2026-10-08",
+        "details": "An assignment on all questions from only the previous year."
+    },
+    {
+        "type": "assignment",
+        "name": "CSE Assignment (Improvement)",
+        "date": "2026-10-13",
+        "details": "An assignment on the last three year questions. 2025, 2024 and 2023."
+    },
+    {
+        "type": "exam",
+        "name": "CSE Assesment - 2",
+        "date": "2026-10-13",
+        "details": "Lab assessment on the topics taught in the lab."
+    },
+    {
+        "type": "exam",
+        "name": "CSE Assesment - 3",
+        "date": "2026-10-15",
+        "details": "Lab assessment on the previously learned topics."
     }
 ]
