@@ -83,7 +83,7 @@ function layout(p){                       // p = position in page units (0..2), 
   const iw=(tabsEl.clientWidth-10)/PAGES.length;ind.style.width=iw+'px';ind.style.transform='translateX('+p*iw+'px)';
   pgs.forEach((pg,i)=>{
     const d=i-p;
-    if(i===cur){pg.hidden=false;pg.style.position='';pg.style.transform=d?'translateX('+d*W+'px)':''}
+    if(i===cur){pg.hidden=false;pg.style.cssText=d?'transform:translateX('+d*W+'px)':''}
     else if(Math.abs(d)<1){pg.hidden=false;pg.style.cssText='position:absolute;top:0;left:1.25rem;width:calc(100% - 2.5rem);transform:translateX('+d*W+'px)'}
     else{pg.hidden=true;pg.style.cssText=''}
   });
@@ -180,6 +180,19 @@ function end(e){
 sheet.addEventListener('pointerup',end);sheet.addEventListener('pointercancel',end);
 
 /* ---- theme: light by default, manual toggle, remembered ---- */
+const root=document.documentElement,tb=$('#theme'),ic=tb.firstChild;let rot=0,th;
+function icons(dark){$('#sun').style.display=dark?'none':'';$('#moon').style.display=dark?'':'none';tb.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode')}
+icons(root.dataset.theme==='dark');
+tb.addEventListener('click',()=>{
+  const dark=root.dataset.theme!=='dark';
+  if(!RM.matches){root.classList.add('tt');setTimeout(()=>root.classList.remove('tt'),400)}
+  root.dataset.theme=dark?'dark':'light';icons(dark);
+  try{localStorage.setItem('theme',dark?'dark':'light')}catch(e){}
+  th&&th.stop();th=spring(rot,rot+90,0,{damping:.8,response:.4},r=>{rot=r;ic.style.transform='rotate('+r+'deg)'});
+});
+})
+.catch(err=>console.error('Failed to load events.json:',err));
+al toggle, remembered ---- */
 const root=document.documentElement,tb=$('#theme'),ic=tb.firstChild;let rot=0,th;
 function icons(dark){$('#sun').style.display=dark?'none':'';$('#moon').style.display=dark?'':'none';tb.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode')}
 icons(root.dataset.theme==='dark');
