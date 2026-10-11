@@ -7,7 +7,7 @@ Congratulations on finding this repository. Here is the part where I explain, in
 
 ## Permitted use
 
-You may view and use this project for your own personal, non-commercial purposes only, like running it locally to admire how good a notebook-themed webpage can look.
+You may view and use this project for your own personal, non-commercial purposes only, like running it locally to admire how good a minimalist-themed webpage can look.
 
 Anything beyond that, copying, modifying, merging, publishing, distributing, sublicensing, selling, hosting your own copy, or quietly folding it into "your" project, requires prior written permission from me. Not implied permission. Not "I assumed it was fine." Written. From me.
 
