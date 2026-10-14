@@ -177,7 +177,8 @@
     {
         "type": "exam",
         "name": "Math In-Course Exam - 3",
-        "date": "2026-10-18",
+        "date": "2026-10-25",
+        "endDate": "2026-10-30",
         "details": "A mandatory exam on the following topics: Area, Polar. Students are advised to study the slides, notes and previous year questions."
     }
 ]
