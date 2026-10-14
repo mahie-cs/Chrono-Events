@@ -180,5 +180,12 @@
         "date": "2026-10-25",
         "endDate": "2026-10-30",
         "details": "A mandatory exam on the following topics: Area, Polar. Students are advised to study the slides, notes and previous year questions."
+    },
+    {
+        "type": "assignment",
+        "name": "Math assignment (Improvement)",
+        "date": "2026-10-25",
+        "endDate": "2026-10-30",
+        "details": "This assignment is only for those who missed the previous Math In-Couse exams. The assignment is on the previous two year questions. solve them and submit it to our math lecturer."
     }
 ]
