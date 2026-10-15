@@ -1,10 +1,10 @@
-# 🤝 Contributing to Momentum
+# Contributing to Momentum
 
 Thanks for helping keep the department calendar accurate. Anyone can suggest a change by opening a pull request. Every pull request is reviewed in the same way, and no one gets a shortcut.
 
 ---
 
-## 🔁 How to propose a change
+## How to propose a change
 
 1. **Fork** this repository.
 2. Edit `events.json` in your fork. This is the only file you need to touch to add, change, or remove an event.
@@ -44,7 +44,7 @@ Notes:
 
 ---
 
-## ⚠️ Before you open the pull request
+## Before you open the pull request
 
 - **Check your JSON is valid.** One missing comma or quote can break the file for everyone. You can test it with:
   ```bash
@@ -58,7 +58,7 @@ Notes:
 
 ---
 
-## ✅ What gets a pull request accepted
+## What gets a pull request accepted
 
 - The change is correct and comes from a reliable source.
 - Only `events.json` is changed, unless you are fixing a bug or improving something else on purpose.
@@ -68,7 +68,7 @@ Pull requests with wrong dates, broken JSON, or unrelated edits will be sent bac
 
 ---
 
-## 💻 Changing the website or the app
+## Changing the website or the app
 
 Code changes are welcome too, but this project is **all rights reserved** (see `LICENSE.md`). For anything beyond `events.json`, such as design, features, or the Android app, email **mahie.edu@gmail.com** first so we can agree on it before you spend time on it.
 
