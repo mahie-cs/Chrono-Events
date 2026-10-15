@@ -5,7 +5,6 @@ const TZ='Asia/Dhaka',T2P={exam:'exams',assignment:'assignments',event:'events'}
 const RM=matchMedia('(prefers-reduced-motion: reduce)');
 const $=s=>document.querySelector(s);
 
-/* ---- spring: damping ratio + response (s). Starts from the live value and inherits velocity. ---- */
 function spring(from,to,vel,{damping=1,response=.4},tick,done){
   const w=2*Math.PI/response,k=w*w,c=2*damping*w;
   let x=from,v=vel,last=performance.now(),id;
@@ -22,16 +21,15 @@ function spring(from,to,vel,{damping=1,response=.4},tick,done){
 const project=(v,d=.998)=>(v/1000)*d/(1-d);
 const rubber=(o,dim,c=.55)=>(o*dim*c)/(dim+c*Math.abs(o));
 
-/* ---- dates (Bangladesh time) ---- */
 const today=new Intl.DateTimeFormat('en-CA',{timeZone:TZ}).format(new Date());
-const status=e=>today<e.date?'upcoming':today>(e.endDate||e.date)?'past':'ongoing';
+const hasDate=e=>!!(e.date&&String(e.date).trim());
+const status=e=>!hasDate(e)?'upcoming':today<e.date?'upcoming':today>(e.endDate||e.date)?'past':'ongoing';
 const fmt=(a,b)=>{const o={day:'numeric',month:'short',year:'numeric'},f=i=>new Date(i+'T00:00:00').toLocaleDateString('en-GB',o);return b&&b!==a?f(a)+' – '+f(b):f(a)};
 const cmp=(a,b)=>a<b?-1:a>b?1:0;
 const B={};PAGES.forEach(p=>B[p]={upcoming:[],ongoing:[],past:[]});
 EVENTS.forEach(e=>B[T2P[e.type]||'events'][status(e)].push(e));
-PAGES.forEach(p=>{const g=B[p];g.upcoming.sort((a,b)=>cmp(a.date,b.date));g.ongoing.sort((a,b)=>cmp(b.date,a.date));g.past.sort((a,b)=>cmp(b.endDate||b.date,a.endDate||a.date))});
+PAGES.forEach(p=>{const g=B[p];g.upcoming.sort((a,b)=>cmp(hasDate(a)?a.date:'9999-99-99',hasDate(b)?b.date:'9999-99-99'));g.ongoing.sort((a,b)=>cmp(b.date,a.date));g.past.sort((a,b)=>cmp(b.endDate||b.date,a.endDate||a.date))});
 
-/* ---- render ---- */
 const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
 const LABEL={exams:'Exams',assignments:'Assignments',events:'Events'};
 const pagesEl=$('#pages');let flipped=null;
@@ -49,7 +47,7 @@ PAGES.forEach(p=>{
 });
 function card(e){
   const c=el('div','card');c.tabIndex=0;c.setAttribute('role','button');c.dataset.a=0;
-  const date=fmt(e.date,e.endDate),long=e.details.length>LIM,inn=el('div','in');
+  const date=hasDate(e)?fmt(e.date,e.endDate):'Date TBA',long=e.details.length>LIM,inn=el('div','in');
   const f=el('div','f'),b=el('div','b');
   f.append(el('h3',0,e.name),el('span','pill',date));
   const p=el('p',0,long?e.details.slice(0,LIM)+'…':e.details);
@@ -59,7 +57,6 @@ function card(e){
   return c;
 }
 
-/* ---- card flip: spring on rotation, interruptible (animates from live angle) ---- */
 function flip(c,to){
   const inn=c.firstChild;c._h&&c._h.stop();
   const set=a=>{c.dataset.a=a;if(RM.matches){inn.style.transform='';inn.children[0].style.opacity=a>90?0:1;inn.children[1].style.opacity=a>90?1:0;inn.children[1].style.transform='none';inn.children[0].style.transform='none'}else inn.style.transform='rotateY('+a+'deg)'};
@@ -74,11 +71,10 @@ function toggle(c){
 pagesEl.addEventListener('click',e=>{const c=e.target.closest('.card');if(c)toggle(c)});
 pagesEl.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('card')){e.preventDefault();toggle(e.target)}});
 
-/* ---- navigation + swipe: one position value drives the pages AND the tab indicator ---- */
 const tabs=[...document.querySelectorAll('.tabs a')],ind=$('.ind'),tabsEl=$('.tabs');
 const pgs=PAGES.map(p=>$('#page-'+p)),LAST=PAGES.length-1;
 let cur=0,P=0,W=1,ph,moving=false,justDragged=false,dr=null;
-function layout(p){                       // p = position in page units (0..2), fractional while moving
+function layout(p){
   P=p;W=pagesEl.clientWidth||1;
   const iw=(tabsEl.clientWidth-10)/PAGES.length;ind.style.width=iw+'px';ind.style.transform='translateX('+p*iw+'px)';
   pgs.forEach((pg,i)=>{
@@ -101,11 +97,10 @@ addEventListener('hashchange',()=>{const i=PAGES.indexOf(location.hash.slice(1))
 addEventListener('resize',()=>layout(P));
 cur=Math.max(0,PAGES.indexOf(location.hash.slice(1)));markTab(cur);layout(cur);
 
-/* swipe: vertical scroll stays native (touch-action: pan-y); horizontal intent is tracked 1:1 */
 pagesEl.addEventListener('pointerdown',e=>{
   if(e.pointerType==='mouse')return;
   dr={id:e.pointerId,x0:e.clientX,y0:e.clientY,lock:false,base:0,start:cur,hist:[]};
-  if(moving){                              // grab mid-flight: continue from the live position
+  if(moving){
     ph.stop();dr.lock=true;dr.base=P*W;dr.hist=[[e.clientX,e.timeStamp]];pagesEl.setPointerCapture(e.pointerId);
   }
 });
@@ -128,14 +123,13 @@ function release(e){
   const d=dr;dr=null;if(!d.lock)return;
   justDragged=true;setTimeout(()=>justDragged=false,60);
   const a=d.hist[0],b=d.hist[d.hist.length-1],fv=b[1]>a[1]?(b[0]-a[0])/(b[1]-a[1])*1000:0,v=-fv;
-  const to=Math.round((P*W+project(v,.99))/W);               // where the flick is heading
-  const n=Math.max(d.start-1,Math.min(d.start+1,to));        // one page at a time
-  goTo(n,v,Math.abs(v)>300?.85:1);                           // a little bounce only if flicked
+  const to=Math.round((P*W+project(v,.99))/W);
+  const n=Math.max(d.start-1,Math.min(d.start+1,to));
+  goTo(n,v,Math.abs(v)>300?.85:1);
 }
 pagesEl.addEventListener('pointerup',release);pagesEl.addEventListener('pointercancel',release);
 pagesEl.addEventListener('click',e=>{if(justDragged){e.stopPropagation();e.preventDefault()}},true);
 
-/* ---- bottom sheet: 1:1 drag, rubber-band, momentum projection, velocity handoff ---- */
 const sheet=$('#sheet'),scrim=$('#scrim'),mainEl=$('main');
 let y=0,H=0,sh,opener,isOpen=false;
 function paint(v){
@@ -160,7 +154,7 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&isOpen)closeSheet()});
 let drag=null;
 sheet.addEventListener('pointerdown',e=>{
   if(e.target.closest('.done')||(e.target.closest('#st')&&$('#st').scrollTop>0))return;
-  sh&&sh.stop();                                   // grab mid-flight: continue from the live value
+  sh&&sh.stop();
   drag={id:e.pointerId,off:e.clientY-y,hist:[[e.clientY,e.timeStamp]],moved:false,sy:e.clientY};
   sheet.setPointerCapture(e.pointerId);
 });
@@ -174,12 +168,11 @@ function end(e){
   if(!drag||e.pointerId!==drag.id)return;
   const h=drag.hist,a=h[0],b=h[h.length-1],v=b[1]>a[1]?(b[0]-a[0])/(b[1]-a[1])*1000:0;
   const moved=drag.moved;drag=null;if(!moved){if(isOpen)sh=spring(y,0,0,{damping:1,response:.3},paint);return}
-  const end=y+project(v);                          // where the flick is heading
+  const end=y+project(v);
   if(end>H/2)closeSheet(v);else{isOpen=true;sh=spring(y,0,v,{damping:.8,response:.4},paint)}
 }
 sheet.addEventListener('pointerup',end);sheet.addEventListener('pointercancel',end);
 
-/* ---- theme: light by default, manual toggle, remembered ---- */
 const root=document.documentElement,tb=$('#theme'),ic=tb.firstChild;let rot=0,th;
 function icons(dark){$('#sun').style.display=dark?'none':'';$('#moon').style.display=dark?'':'none';tb.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode')}
 icons(root.dataset.theme==='dark');
