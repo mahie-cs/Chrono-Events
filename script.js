@@ -26,15 +26,17 @@ const rubber=(o,dim,c=.55)=>(o*dim*c)/(dim+c*Math.abs(o));
 
 const today=new Intl.DateTimeFormat('en-CA',{timeZone:TZ}).format(new Date());
 const raw=e=>String(e.date==null?'':e.date).trim();
-const hasDate=e=>/^\d{4}-\d{2}-\d{2}$/.test(raw(e));
-const status=e=>{const d=raw(e);return d==='-1'?'postponed':d==='0'?'cancelled':!hasDate(e)?'upcoming':today<d?'upcoming':today>(e.endDate||d)?'past':'ongoing'};
-const dateText=e=>{const d=raw(e);return d==='-1'?'Postponed':d==='0'?'Cancelled':hasDate(e)?fmt(e.date,e.endDate):'Date TBA'};
+const valid=d=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(d))return false;const t=new Date(d+'T00:00:00Z');return !isNaN(t)&&t.toISOString().slice(0,10)===d};
+const hasDate=e=>valid(raw(e));
+const endOf=e=>{const x=String(e.endDate==null?'':e.endDate).trim();return valid(x)&&x>raw(e)?x:raw(e)};
+const status=e=>{const d=raw(e);return d==='-1'?'postponed':d==='0'?'cancelled':!hasDate(e)?'upcoming':today<d?'upcoming':today>endOf(e)?'past':'ongoing'};
+const dateText=e=>{const d=raw(e);return d==='-1'?'Postponed':d==='0'?'Cancelled':d===''?'Upcoming':hasDate(e)?fmt(d,endOf(e)):'Date TBA'};
 const fmt=(a,b)=>{const o={day:'numeric',month:'short',year:'numeric'},f=i=>new Date(i+'T00:00:00').toLocaleDateString('en-GB',o);return b&&b!==a?f(a)+' – '+f(b):f(a)};
 const cmp=(a,b)=>a<b?-1:a>b?1:0;
 const ORDER=['upcoming','ongoing','postponed','cancelled','past'],HIDE_EMPTY=['postponed','cancelled'];
 const B={};PAGES.forEach(p=>{B[p]={};ORDER.forEach(s=>B[p][s]=[])});
 EVENTS.forEach(e=>B[T2P[e.type]||'events'][status(e)].push(e));
-PAGES.forEach(p=>{const g=B[p];g.upcoming.sort((a,b)=>cmp(hasDate(a)?a.date:'9999-99-99',hasDate(b)?b.date:'9999-99-99'));g.ongoing.sort((a,b)=>cmp(b.date,a.date));g.past.sort((a,b)=>cmp(b.endDate||b.date,a.endDate||a.date))});
+PAGES.forEach(p=>{const g=B[p];g.upcoming.sort((a,b)=>cmp(hasDate(a)?a.date:'9999-99-99',hasDate(b)?b.date:'9999-99-99'));g.ongoing.sort((a,b)=>cmp(b.date,a.date));g.past.sort((a,b)=>cmp(endOf(b),endOf(a)))});
 
 const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
 const LABEL={exams:'Exams',assignments:'Assignments',events:'Events'};
