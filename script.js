@@ -1,6 +1,9 @@
 fetch('events.json')
   .then(r=>r.json())
   .then(EVENTS=>{
+const css=document.createElement('style');
+css.textContent='[data-s=postponed]{--c:#c93400}[data-s=cancelled]{--c:#d70015}:root[data-theme=dark] [data-s=postponed]{--c:#ff9f0a}:root[data-theme=dark] [data-s=cancelled]{--c:#ff453a}';
+document.head.append(css);
 const TZ='Asia/Dhaka',T2P={exam:'exams',assignment:'assignments',event:'events'},PAGES=['exams','assignments','events'],LIM=110;
 const RM=matchMedia('(prefers-reduced-motion: reduce)');
 const $=s=>document.querySelector(s);
@@ -22,11 +25,14 @@ const project=(v,d=.998)=>(v/1000)*d/(1-d);
 const rubber=(o,dim,c=.55)=>(o*dim*c)/(dim+c*Math.abs(o));
 
 const today=new Intl.DateTimeFormat('en-CA',{timeZone:TZ}).format(new Date());
-const hasDate=e=>!!(e.date&&String(e.date).trim());
-const status=e=>!hasDate(e)?'upcoming':today<e.date?'upcoming':today>(e.endDate||e.date)?'past':'ongoing';
+const raw=e=>String(e.date==null?'':e.date).trim();
+const hasDate=e=>/^\d{4}-\d{2}-\d{2}$/.test(raw(e));
+const status=e=>{const d=raw(e);return d==='-1'?'postponed':d==='0'?'cancelled':!hasDate(e)?'upcoming':today<d?'upcoming':today>(e.endDate||d)?'past':'ongoing'};
+const dateText=e=>{const d=raw(e);return d==='-1'?'Postponed':d==='0'?'Cancelled':hasDate(e)?fmt(e.date,e.endDate):'Date TBA'};
 const fmt=(a,b)=>{const o={day:'numeric',month:'short',year:'numeric'},f=i=>new Date(i+'T00:00:00').toLocaleDateString('en-GB',o);return b&&b!==a?f(a)+' – '+f(b):f(a)};
 const cmp=(a,b)=>a<b?-1:a>b?1:0;
-const B={};PAGES.forEach(p=>B[p]={upcoming:[],ongoing:[],past:[]});
+const ORDER=['upcoming','ongoing','postponed','cancelled','past'],HIDE_EMPTY=['postponed','cancelled'];
+const B={};PAGES.forEach(p=>{B[p]={};ORDER.forEach(s=>B[p][s]=[])});
 EVENTS.forEach(e=>B[T2P[e.type]||'events'][status(e)].push(e));
 PAGES.forEach(p=>{const g=B[p];g.upcoming.sort((a,b)=>cmp(hasDate(a)?a.date:'9999-99-99',hasDate(b)?b.date:'9999-99-99'));g.ongoing.sort((a,b)=>cmp(b.date,a.date));g.past.sort((a,b)=>cmp(b.endDate||b.date,a.endDate||a.date))});
 
@@ -35,7 +41,8 @@ const LABEL={exams:'Exams',assignments:'Assignments',events:'Events'};
 const pagesEl=$('#pages');let flipped=null;
 PAGES.forEach(p=>{
   const pg=el('section','page');pg.id='page-'+p;pg.hidden=true;
-  ['upcoming','ongoing','past'].forEach(s=>{
+  ORDER.forEach(s=>{
+    if(HIDE_EMPTY.includes(s)&&!B[p][s].length)return;
     const sec=el('section','st');sec.dataset.s=s;
     const h=el('h2');h.append(el('i'),(s[0].toUpperCase()+s.slice(1)+' '+LABEL[p]));h.append(el('small',0,B[p][s].length||''));
     const grid=el('div','grid');
@@ -47,7 +54,7 @@ PAGES.forEach(p=>{
 });
 function card(e){
   const c=el('div','card');c.tabIndex=0;c.setAttribute('role','button');c.dataset.a=0;
-  const date=hasDate(e)?fmt(e.date,e.endDate):'Date TBA',long=e.details.length>LIM,inn=el('div','in');
+  const date=dateText(e),long=e.details.length>LIM,inn=el('div','in');
   const f=el('div','f'),b=el('div','b');
   f.append(el('h3',0,e.name),el('span','pill',date));
   const p=el('p',0,long?e.details.slice(0,LIM)+'…':e.details);
