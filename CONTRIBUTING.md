@@ -7,7 +7,7 @@ Thanks for helping keep the department calendar accurate. Anyone can suggest a c
 ## How to propose a change
 
 1. **Fork** this repository.
-2. Edit `events.json` in your fork. This is the only file you need to touch to add, change, or remove an event.
+2. Edit `events.json` in your fork. This is the only file you need to touch to add, change, postpone, cancel, or remove an event.
 3. **Open a pull request** to `main` with a short description of what changed and why.
 4. Wait for review. The maintainer may ask for corrections or a source for the date.
 
@@ -15,7 +15,7 @@ Once your pull request is merged, the website updates and the Android app picks 
 
 ---
 
-## 🧾 Entry format
+## Entry format
 
 Every event is one entry in the `events.json` list:
 
@@ -32,8 +32,8 @@ Every event is one entry in the `events.json` list:
 |---|---|---|
 | `type` | yes | `"exam"`, `"assignment"`, or `"event"` (not case-sensitive) |
 | `name` | yes | the title shown on the card; keep it short and clear |
-| `date` | yes | `YYYY-MM-DD` |
-| `endDate` | no | `YYYY-MM-DD`, for events that last several days; must not be earlier than `date` |
+| `date` | yes | a date in `YYYY-MM-DD` format, or one of the special values below; always write it in quotes |
+| `endDate` | no | `YYYY-MM-DD`, for events that last several days; must be later than `date`, otherwise it is ignored |
 | `details` | yes | what students need to know: syllabus, room, time, submission method |
 
 Notes:
@@ -41,6 +41,35 @@ Notes:
 - You don't need to keep the list in order. Entries are sorted by date automatically.
 - Details longer than about 110 characters get a "Show more" button, so longer text is fine.
 - Past, ongoing and upcoming are worked out in Bangladesh time.
+
+---
+
+## The `date` field
+
+The `date` value decides where the card appears and what its label says.
+
+| `date` value | meaning | where it appears | label on the card |
+|---|---|---|---|
+| `"2026-09-01"` | a confirmed date | Upcoming, Ongoing or Past, depending on today's date | the date |
+| `""` (empty) | date not announced yet | Upcoming, after the dated events | **Upcoming** |
+| `"-1"` | postponed | Postponed | **Postponed** |
+| `"0"` | cancelled | Cancelled | **Cancelled** |
+| anything else | a mistake: typo, wrong format, or an impossible date like `2026-02-30` | Upcoming, last | **Date TBA** |
+
+Examples:
+
+```json
+{ "type": "exam", "name": "Physics In-Course Exam", "date": "", "details": "Date will be announced." }
+{ "type": "exam", "name": "Physics In-Course Exam", "date": "-1", "details": "Postponed. The new date will be announced." }
+{ "type": "exam", "name": "Physics In-Course Exam", "date": "0", "details": "Cancelled by the department." }
+```
+
+A few things to know:
+
+- The **Postponed** and **Cancelled** sections only show up when at least one event is in them.
+- If you see **Date TBA** on a card, something in the date is wrong. Fix it before you open the pull request.
+- To postpone or cancel an existing event, **change its `date`** and update `details` to say why and, if known, what happens next. Don't delete the entry.
+- When a postponed event gets a new date, replace `"-1"` with that date.
 
 ---
 
@@ -53,8 +82,8 @@ Notes:
   No output means the file is valid.
 - **Use the exact date format**, with leading zeros: `2026-09-01`, not `2026-9-1` or `01/09/2026`.
 - **Don't rename an existing event** unless you mean to. The app treats a changed name as a brand-new event.
-- **Remember that people get notified.** Everyone with the Android app receives a pop-up for each new or changed entry once your pull request is merged. Make sure the date and details are correct first, and combine related edits into one pull request.
-- **Only include confirmed information.** If a date isn't official yet, wait for the notice or mention in your pull request where it came from.
+- **Remember that people get notified.** Android app users receive a notification for new and changed entries once your pull request is merged. Make sure the date and details are correct first, and combine related edits into one pull request.
+- **Only include confirmed information.** If a date isn't official yet, leave `date` empty and mention in your pull request where the event information came from.
 
 ---
 
