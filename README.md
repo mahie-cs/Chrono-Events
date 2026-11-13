@@ -24,7 +24,7 @@ The page itself is styled to look like a real notebook: spiral rings and a red m
 
 ## Features
 
--  **Three sections** — Ongoing (including postponed events, labelled Postponed), Upcoming, and Past, auto-sorted with the soonest upcoming date first
+-  **Three sections** — Ongoing, Upcoming (including postponed events, labelled Postponed), and Past, auto-sorted with the soonest upcoming date first
 -  **Flip cards** — click a card to flip it and read the details on the back
 -  **"Show more" modal** — longer details pop open into a full note instead of getting cut off
 -  **Minimalist theme** — A clean font, clean background and effective

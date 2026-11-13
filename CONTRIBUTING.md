@@ -52,7 +52,7 @@ The `date` value decides where the card appears and what its label says.
 |---|---|---|---|
 | `"2026-09-01"` | a confirmed date | Upcoming, Ongoing or Past, depending on today's date | the date |
 | `""` (empty) | date not announced yet | Upcoming, after the dated events | **Upcoming** |
-| `"-1"` | postponed | Ongoing, after the dated events | **Postponed** |
+| `"-1"` | postponed | Upcoming, last | **Postponed** |
 | `"0"` | cancelled | Cancelled | **Cancelled** |
 | anything else | a mistake: typo, wrong format, or an impossible date like `2026-02-30` | Upcoming, last | **Date TBA** |
 
@@ -66,7 +66,7 @@ Examples:
 
 A few things to know:
 
-- There is no separate Postponed section. Postponed events appear in **Ongoing** with a **Postponed** label.
+- There is no separate Postponed section. Postponed events appear in **Upcoming**, after the other events, with a **Postponed** label.
 - The **Cancelled** section only shows up when at least one event is in it.
 - If you see **Date TBA** on a card, something in the date is wrong. Fix it before you open the pull request.
 - To postpone or cancel an existing event, **change its `date`** and update `details` to say why and, if known, what happens next. Don't delete the entry.

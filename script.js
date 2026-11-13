@@ -34,10 +34,10 @@ const dateText=e=>{const d=raw(e);return d==='-1'?'Postponed':d==='0'?'Cancelled
 const fmt=(a,b)=>{const o={day:'numeric',month:'short',year:'numeric'},f=i=>new Date(i+'T00:00:00').toLocaleDateString('en-GB',o);return b&&b!==a?f(a)+' – '+f(b):f(a)};
 const cmp=(a,b)=>a<b?-1:a>b?1:0;
 const ORDER=['upcoming','ongoing','cancelled','past'],HIDE_EMPTY=['cancelled'];
-const bucket=e=>{const s=status(e);return s==='postponed'?'ongoing':s};
+const bucket=e=>{const s=status(e);return s==='postponed'?'upcoming':s};
 const B={};PAGES.forEach(p=>{B[p]={};ORDER.forEach(s=>B[p][s]=[])});
 EVENTS.forEach(e=>B[T2P[e.type]||'events'][bucket(e)].push(e));
-PAGES.forEach(p=>{const g=B[p];g.upcoming.sort((a,b)=>cmp(hasDate(a)?a.date:'9999-99-99',hasDate(b)?b.date:'9999-99-99'));g.ongoing.sort((a,b)=>(hasDate(a)?0:1)-(hasDate(b)?0:1)||cmp(b.date,a.date));g.past.sort((a,b)=>cmp(endOf(b),endOf(a)))});
+PAGES.forEach(p=>{const g=B[p];const k=e=>raw(e)==='-1'?'9999-99-99':hasDate(e)?e.date:'9999-99-98';g.upcoming.sort((a,b)=>cmp(k(a),k(b)));g.ongoing.sort((a,b)=>cmp(b.date,a.date));g.past.sort((a,b)=>cmp(endOf(b),endOf(a)))});
 
 const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
 const LABEL={exams:'Exams',assignments:'Assignments',events:'Events'};
