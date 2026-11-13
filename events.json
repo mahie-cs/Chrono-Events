@@ -1,0 +1,189 @@
+[
+    {
+        "type": "exam",
+        "name": "CSE In-Course Exam",
+        "date": "2026-07-28",
+        "details": "A mandatory exam covering differnet types of Topologies, Number systems, IP Addresses, Computer basics, I/O devices, Software and Networking basics."
+    },
+    {
+        "type": "assignment",
+        "name": "CSE Single Page Assignment Submission",
+        "date": "2026-08-12",
+        "details": "Topic: Star Wireless Network vs Mesh Wireless Network."
+    },
+    {
+        "type": "event",
+        "name": "Football Tournament 2026",
+        "date": "2026-07-16",
+        "details": "An Interdepartmental Football Tournament hosted at Kick Zone in Mirpur-12. Every student of SIMT no matter the year can participate including the teachers."
+    },
+    {
+        "type": "event",
+        "name": "Indoor Games 2026",
+        "date": "2026-07-29",
+        "details": "A indoor tournament hosted in the main building of SIMT on the 10th floor. Chess, Carrom and Foosball can be played. Pick your favourite game and have fun!"
+    },
+    {
+        "type": "event",
+        "name": "The Orator Challenge 2026",
+        "date": "2026-07-27",
+        "details": "Show your public speaking skills and get a chance to join the SIMT Debating Club."
+    },
+    {
+        "type": "exam",
+        "name": "Chemistry In-Course Exam",
+        "date": "2026-08-16",
+        "details": "A mandatory exam on the topic: Chemical Bonds."
+    },
+    {
+        "type": "assignment",
+        "name": "EEE Presentation",
+        "date": "2026-08-04",
+        "details": "A presentation on KVL vs KCL vs Ohm's Law. The class has been divided into three groups and their topics have been assigned. Create the presentation as a group and present it in front of the class"
+    },
+    {
+        "type": "assignment",
+        "name": "Discrete Mathematics Assignment Submission",
+        "date": "2026-08-16",
+        "details": "Topic shared in the Discrete Mathematics class WhatsApp group."
+    },
+    {
+        "type": "assignment",
+        "name": "EEE Debate",
+        "date": "2026-08-19",
+        "details": "A debate on Thevenin's Theorem and Norton's Theorem. The class has been divided in two groups. Research on both topics and debate against your opponent."
+    },
+    {
+        "type": "event",
+        "name": "Pera",
+        "date": "2024-01-01",
+        "endDate": "2030-06-30",
+        "details": "A neverending event that will continue until the end of fourth year of the CSE program."
+    },
+    {
+        "type": "exam",
+        "name": "EEE In-Course Exam",
+        "date": "2026-08-25",
+        "details": "A mandatory exam covering Lecture slide 1 through 13. Lecture slides are available on Google Drive. The Drive link can be found on the WhatsApp community announcement channel. If you can't find it, ask class rep for the link."
+    },
+    {
+        "type": "exam",
+        "name": "Discrete Mathematics In-Course Exam",
+        "date": "2026-08-30",
+        "details": "A mandatory exam covering Lecture 4, 5, 6. Lecture slides are available on the dedicated Discrete Mathematics WhatsApp group. For any inquiries, contact the class rep or Amartya Kumar Durjoy."
+    },
+    {
+        "type": "exam",
+        "name": "Social Science In-Course Exam",
+        "date": "2026-09-01",
+        "details": "A mandatory exam covering Organs of the Government, Various types of Constitutions, Common features of Constitutions of Bangladesh, Fundamental Rights and Human Rights."
+    },
+    {
+        "type": "exam",
+        "name": "Math In-Course Exam",
+        "date": "2026-09-06",
+        "details": "A mandatory exam covering Limit, Continuity, Differentiability, Leibniz Theorem, Rolles Theorem, Mean Value Theorem. Our teacher suggested us to study what he taught in his slides first, then practice previous year questions. By doing so, you should be able to answer most questions."
+    },
+    {
+        "type": "exam",
+        "name": "CSE Lab Assesment",
+        "date": "2026-09-02",
+        "details": "A mandatory lab assessment on previously taught programming related problems. Main topic: Loops and Arrays. Allowed languages: C/C++, Python. This assesment will be done individually. Every student will get approximately 5 minutes to solve a problem. Failing to remember syntaxes will not be tolerated."
+    },
+    {
+        "type": "assignment",
+        "name": "Discrete Mathematics Presentation",
+        "date": "2026-09-08",
+        "details": "A presentation on the following three topics: Euler Circuit and Path, Hamilton Circuit and Path, Coplanar Graph."
+    },
+    {
+        "type": "assignment",
+        "name": "EEE Project Presentation",
+        "date": "2026-09-09",
+        "details": "You will give a presentation on the EEE project you and your team built. This presentation will determine your depth of understanding and whether you should proceed with perfecting your project."
+    },
+    {
+        "type": "assignment",
+        "name": "Chemistry Assignment - 1",
+        "date": "2026-09-17",
+        "details": "Assignment on previous year questions from 2021 to 2025 covering Atomic Structure and Chemical Bond."
+    },
+    {
+        "type": "exam",
+        "name": "Chemistry In-Course Exam - 2",
+        "date": "2026-09-22",
+        "details": "A mandatory exam on the following topics: Acid Base and Oxidation Reduction"
+    },
+    {
+        "type": "exam",
+        "name": "Chemistry In-Course Exam - 3",
+        "date": "2026-10-11",
+        "details": "The exam is on the following topics: Reaction kinetics, Chemical Equilibria, Thermodynamics."
+    },
+    {
+        "type": "exam",
+        "name": "Discrete Mathematics In-Couse Exam - 3",
+        "date": "2026-09-15",
+        "details": "A class test on the following topic: Graph (Last three slides)."
+    },
+    {
+        "type": "assignment",
+        "name": "EEE Poster Presentation",
+        "date": "2026-09-30",
+        "details": "A poster presentation on your EEE project."
+    },
+    {
+        "type": "exam",
+        "name": "Social Science In-Couse Exam - 2",
+        "date": "2026-10-01",
+        "details": "An exam on Types of Government, Origin of Government, State Basic Elements, Function of the state, State vs Government."
+    },
+    {
+        "type": "assignment",
+        "name": "Social Science Assessment",
+        "date": "-1",
+        "details": "Topic: 1. Explain the social contract theory with proper example -6 marks | 2. What do you mean by Human Resource Management and Human Resource Planning -4 marks | 3. Discuss the role of HRM in public administration -5 marks | 4. Describe the role of government to ensure accountability and transparency of civil services -5 marks | 5. Explain the prominent challenges in Human Resource Management and Planning -5 marks"
+    },
+    {
+        "type": "exam",
+        "name": "Math In-Couse Exam - 2",
+        "date": "2026-10-06",
+        "details": "An exam on the following topic: Beta Gamma Function."
+    },
+    {
+        "type": "assignment",
+        "name": "EEE Assignment (Improvement)",
+        "date": "2026-10-08",
+        "details": "An assignment on all questions from only the previous year."
+    },
+    {
+        "type": "assignment",
+        "name": "CSE Assignment (Improvement)",
+        "date": "2026-10-13",
+        "details": "An assignment on the last three year questions. 2025, 2024 and 2023."
+    },
+    {
+        "type": "exam",
+        "name": "CSE Assesment - 2",
+        "date": "-1",
+        "details": "Lab assessment on the topics taught in the lab."
+    },
+    {
+        "type": "exam",
+        "name": "CSE Assesment - 3",
+        "date": "-1",
+        "details": "Lab assessment on the previously learned topics."
+    },
+    {
+        "type": "exam",
+        "name": "Math In-Course Exam - 3",
+        "date": "2026-11-01",
+        "details": "A mandatory exam on the following topics: Area, Polar. Students are advised to study the slides, notes and previous year questions."
+    },
+    {
+        "type": "assignment",
+        "name": "Math assignment (Improvement)",
+        "date": "",
+        "details": "This assignment is only for those who missed the previous Math In-Couse exams. The assignment is on the previous two year questions. solve them and submit it to our math lecturer."
+    }
+]
