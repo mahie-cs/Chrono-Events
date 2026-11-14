@@ -1,0 +1,30 @@
+{
+    "Saturday": {},
+    "Sunday": {
+        "9:00-9:50": "Discrete Mathematics",
+        "9:50-10:40": "Calculus",
+        "10:40-12:20": "Computer Fundamentals (Lab)",
+        "12:20-1:10": "Chemistry"
+    },
+    "Monday": {
+        "9:00-11:30": "Chemistry (Lab)",
+        "11:30-1:10": "Electricals & Electronics (Lab)"
+    },
+    "Tuesday": {
+        "9:00-9:50": "Discrete Mathematics",
+        "9:50-11:30": "Social Science",
+        "11:30-12:20": "Electricals & Electronics",
+        "12:20-1:10": "Calculus"
+    },
+    "Wednesday": {
+        "9:00-11:30": "Electricals & Electronics (Lab)",
+        "11:30-12:20": "Computer Fundamentals"
+    },
+    "Thursday": {
+        "9:00-9:50": "Discrete Mathematics",
+        "9:50-11:30": "Chemistry",
+        "11:30-12:20": "Calculus",
+        "12:20-1:10": "Computer Fundamentals"
+    },
+    "Friday": {}
+}
