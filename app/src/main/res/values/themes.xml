@@ -1,0 +1,5 @@
+<resources>
+    <style name="Theme.Momentum" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">#F5F5F7</item>
+    </style>
+</resources>
